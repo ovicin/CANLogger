@@ -15,12 +15,29 @@ Dependencies:
 // include the library code:
 #include <Wire.h>
 
+///////////////////////////////
+/* CAN Shield*/
+#include <mcp_can.h>
+#include <SPI.h>
+
+#include "PIDs.h"
+
+typedef enum {
+  SNIFFER,
+  OBD
+}enMainMenu;
+
+enMainMenu MainMenu;
+char engineRPM[4];
+
 void setup() {
+  
+  
   // Debugging output
   Serial.begin(115200);
   
-  //LcdSetup();
-  //SdCardSetup();
+  LcdSetup();
+  SdCardSetup();
   CANSetup();
 }
 
@@ -28,7 +45,7 @@ void setup() {
 
 //uint8_t i=0;
 void loop() {
-  //LcdLoop();
+  LcdLoop();
   CANLoop();
-  //SdCardLoop();  
+  SdCardLoop();  
 }
